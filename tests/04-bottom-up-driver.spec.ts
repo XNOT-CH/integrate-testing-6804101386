@@ -2,7 +2,7 @@ import { test, expect, BrowserContext, Page } from '@playwright/test';
 
 /**
  * 04 : Bottom-Up + DRIVER
- * ผู้จัดทำ : Werawut 6804101386
+ * ผู้จัดทำ : นายวีรวุฒิ นิติทอนกุล 6804101386
  *
  * DRIVER A แทนชั้น Login ด้านบน: ไม่กรอกฟอร์ม แต่ใส่ cookie session ให้เลย
  * แล้วเรียกโมดูลล่าง B Inventory -> E Add Cart ซึ่งเป็นของจริง

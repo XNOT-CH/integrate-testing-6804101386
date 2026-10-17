@@ -1,8 +1,8 @@
 {
   "name": "integrate-testing-6804101386",
   "version": "1.0.0",
-  "description": "Integration Testing (Top-Down / Bottom-Up) with Playwright on saucedemo.com - Werawut 6804101386",
-  "author": "Werawut 6804101386",
+  "description": "Integration Testing (Top-Down / Bottom-Up) with Playwright on saucedemo.com - นายวีรวุฒิ นิติทอนกุล 6804101386",
+  "author": "นายวีรวุฒิ นิติทอนกุล 6804101386",
   "license": "ISC",
   "scripts": {
     "test": "playwright test",

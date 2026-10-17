@@ -1,6 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
 
-// Integration Testing - Werawut 6804101386
+// Integration Testing - นายวีรวุฒิ นิติทอนกุล 6804101386
 export default defineConfig({
   testDir: './tests',
   timeout: 30_000,

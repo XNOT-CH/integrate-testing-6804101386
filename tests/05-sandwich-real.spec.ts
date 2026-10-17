@@ -2,7 +2,7 @@ import { test, expect, Page } from '@playwright/test';
 
 /**
  * 05 : Sandwich REAL
- * ผู้จัดทำ : Werawut 6804101386
+ * ผู้จัดทำ : นายวีรวุฒิ นิติทอนกุล 6804101386
  *
  * แบ่งเป็น 2 ทาง แล้วมาบรรจบกันที่ชั้นกลาง (B Inventory)
  *   ทางบน (Top-Down)      : A -> B

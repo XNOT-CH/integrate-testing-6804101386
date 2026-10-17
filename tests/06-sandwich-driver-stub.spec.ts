@@ -3,7 +3,7 @@ import { STUDENT_INFO } from './helpers/student';
 
 /**
  * 06 : Sandwich + STUB + DRIVER
- * ผู้จัดทำ : Werawut 6804101386
+ * ผู้จัดทำ : นายวีรวุฒิ นิติทอนกุล 6804101386
  *
  * ทางบน (Top-Down)    : A Login REAL -> B Inventory STUB
  * ทางล่าง (Bottom-Up) : DRIVER A -> B Inventory REAL -> E Add Cart -> F Cart

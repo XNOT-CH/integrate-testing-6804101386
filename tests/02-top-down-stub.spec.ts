@@ -3,7 +3,7 @@ import { STUDENT_INFO } from './helpers/student';
 
 /**
  * 02 : Top-Down + STUB
- * ผู้จัดทำ : Werawut 6804101386
+ * ผู้จัดทำ : นายวีรวุฒิ นิติทอนกุล 6804101386
  *
  * A Login ใช้ของจริง ส่วน B Inventory ยังไม่ต่อ -> แทนด้วย STUB
  * saucedemo เป็น SPA (หน้า inventory วาดด้วย JS ไม่มี request ให้ดัก)

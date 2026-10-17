@@ -2,7 +2,7 @@ import { test, expect, Browser, Page } from '@playwright/test';
 
 /**
  * Work 2 : Bottom-Up Integration Testing + DRIVER
- * ผู้จัดทำ : Werawut 6804101386
+ * ผู้จัดทำ : นายวีรวุฒิ นิติทอนกุล 6804101386
  *
  * โมดูลบน (A) Login       -> ไม่ใช้ แทนด้วย DRIVER (ใส่ session cookie ตรง ๆ)
  * โมดูลล่าง (B) Inventory -> ของจริง

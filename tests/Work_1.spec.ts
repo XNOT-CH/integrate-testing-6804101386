@@ -3,7 +3,7 @@ import { STUDENT_INFO } from './helpers/student';
 
 /**
  * Work 1 : Top-Down Integration Testing + STUB
- * ผู้จัดทำ : Werawut 6804101386
+ * ผู้จัดทำ : นายวีรวุฒิ นิติทอนกุล 6804101386
  *
  * โมดูลบนสุด (A) Login  -> ใช้ของจริง
  * โมดูลล่าง  (B) Inventory -> ยังไม่ใช้ของจริง แทนด้วย STUB

@@ -2,7 +2,7 @@ import { test, expect, Page } from '@playwright/test';
 
 /**
  * 03 : Bottom-Up REAL (ไม่มี Stub / Driver)
- * ผู้จัดทำ : Werawut 6804101386
+ * ผู้จัดทำ : นายวีรวุฒิ นิติทอนกุล 6804101386
  *
  * ทดสอบกลุ่มโมดูลล่าง (B -> E -> F) ก่อน แล้วค่อยต่อ A Login เข้ามาทีหลัง
  * saucedemo เป็น black-box จึงต้อง login จริงเป็นเงื่อนไขก่อนเข้าโมดูลล่าง
