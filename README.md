@@ -2,10 +2,18 @@
 
 **ผู้จัดทำ:** Werawut 6804101386
 
-| งาน | แนวทาง | สิ่งที่ใช้ของจริง | สิ่งที่จำลอง |
+| ไฟล์ | แนวทาง | สิ่งที่ใช้ของจริง | สิ่งที่จำลอง |
 |---|---|---|---|
-| `tests/Work_1.spec.ts` | Top-Down | (A) Login | **STUB** แทน (B) Inventory |
-| `tests/Work_2.spec.ts` | Bottom-Up | (B) Inventory → (E) Add to Cart → (F) Cart | **DRIVER** แทน (A) Login (ใส่ cookie `session-username`) |
+| `tests/01-top-down-real.spec.ts` | Top-Down | A → B → E → F ทั้งหมด | – |
+| `tests/02-top-down-stub.spec.ts` | Top-Down | (A) Login | **STUB** แทน (B) Inventory (แสดงชื่อนักศึกษา) |
+| `tests/03-bottom-up-real.spec.ts` | Bottom-Up | B → E → F แล้วต่อ A | – |
+| `tests/04-bottom-up-driver.spec.ts` | Bottom-Up | (B) Inventory → (E) Add to Cart | **DRIVER** แทน (A) Login |
+| `tests/05-sandwich-real.spec.ts` | Sandwich | ทางบน A → B, ทางล่าง B → E → F | – |
+| `tests/06-sandwich-driver-stub.spec.ts` | Sandwich | ทางบน A, ทางล่าง B → E → F | **STUB** B (ทางบน) + **DRIVER** A (ทางล่าง) |
+| `tests/Work_1.spec.ts` | Top-Down | (A) Login | **STUB** แทน (B) Inventory + ชื่อนักศึกษาใน STUB |
+| `tests/Work_2.spec.ts` | Bottom-Up | (B) Inventory → (E) Add to Cart → (F) Cart | **DRIVER** แทน (A) Login + **DRIVER** เปิดหน้า Cart |
+
+ชื่อ/รหัสนักศึกษาที่แสดงใน STUB แก้ได้ที่ `tests/helpers/student.ts`
 
 ## วิธีรัน
 

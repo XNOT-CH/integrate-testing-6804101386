@@ -1,4 +1,5 @@
 import { test, expect, Page } from '@playwright/test';
+import { STUDENT_INFO } from './helpers/student';
 
 /**
  * Work 1 : Top-Down Integration Testing + STUB
@@ -40,6 +41,7 @@ async function inventoryStub(page: Page) {
     <span class="title">Products (STUB)</span>
     <a class="shopping_cart_link"><span class="shopping_cart_badge"></span></a>
     <div class="inventory_list">${items}</div>
+    <footer data-test="student-info">${STUDENT_INFO}</footer>
     <script>
       let count = 0;
       document.querySelectorAll('button').forEach((btn) => {
@@ -66,6 +68,7 @@ test.describe('Work 1 - Top-Down (Login REAL -> Inventory STUB)', () => {
     await expect(page.locator('.title')).toHaveText('Products (STUB)');
     await expect(page.locator('.inventory_item')).toHaveCount(STUB_PRODUCTS.length);
     await expect(page.locator('.inventory_item_name').first()).toHaveText('Stub Product One');
+    await expect(page.locator('[data-test="student-info"]')).toHaveText(STUDENT_INFO);
   });
 
   test('TD-02: กด Add to cart บน STUB แล้วตัวเลขตะกร้าเพิ่มขึ้น', async ({ page }) => {

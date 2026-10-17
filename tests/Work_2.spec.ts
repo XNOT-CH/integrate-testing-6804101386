@@ -9,6 +9,8 @@ import { test, expect, Browser, Page } from '@playwright/test';
  *          (E) Add to Cart -> ของจริง
  *          (F) Cart        -> ของจริง
  *
+ * DRIVER Cart  -> เปิดหน้า cart.html ตรง ๆ (ไม่ต้องกดไอคอนตะกร้า)
+ *
  * แนวคิด: ทดสอบจากล่างขึ้นบน โมดูลล่างเสร็จก่อน
  * จึงเขียน DRIVER มาเรียกใช้แทนโมดูลบนที่ยังไม่ได้ต่อเข้ามา
  */
@@ -22,6 +24,12 @@ async function loginDriver(browser: Browser, username = 'standard_user'): Promis
   const page = await context.newPage();
   await page.goto('/inventory.html');
   return page;
+}
+
+// ---------- DRIVER : เปิดหน้า Cart ----------
+async function cartDriver(page: Page) {
+  await page.goto('/cart.html');
+  await expect(page.locator('[data-test="title"]')).toHaveText('Your Cart');
 }
 
 test.describe('Work 2 - Bottom-Up (DRIVER -> Inventory -> Add Cart -> Cart)', () => {
@@ -42,9 +50,8 @@ test.describe('Work 2 - Bottom-Up (DRIVER -> Inventory -> Add Cart -> Cart)', ()
     await page.locator('[data-test="add-to-cart-sauce-labs-fleece-jacket"]').click();
     await expect(page.locator('[data-test="shopping-cart-badge"]')).toHaveText('2');
 
-    // (F) Cart
-    await page.locator('[data-test="shopping-cart-link"]').click();
-    await expect(page).toHaveURL(/cart\.html/);
+    // (F) Cart - เรียกผ่าน DRIVER
+    await cartDriver(page);
 
     const names = page.locator('[data-test="inventory-item-name"]');
     await expect(names).toHaveCount(2);
@@ -58,7 +65,7 @@ test.describe('Work 2 - Bottom-Up (DRIVER -> Inventory -> Add Cart -> Cart)', ()
 
     await page.locator('[data-test="add-to-cart-sauce-labs-onesie"]').click();
     await page.locator('[data-test="add-to-cart-sauce-labs-bolt-t-shirt"]').click();
-    await page.locator('[data-test="shopping-cart-link"]').click();
+    await cartDriver(page);
 
     await page.locator('[data-test="remove-sauce-labs-onesie"]').click();
 
