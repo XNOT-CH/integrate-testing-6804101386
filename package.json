@@ -1,0 +1,16 @@
+{
+  "name": "integrate-testing-6804101386",
+  "version": "1.0.0",
+  "description": "Integration Testing (Top-Down / Bottom-Up) with Playwright on saucedemo.com - Werawut 6804101386",
+  "author": "Werawut 6804101386",
+  "license": "ISC",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "@types/node": "^26.6.5"
+  }
+}
