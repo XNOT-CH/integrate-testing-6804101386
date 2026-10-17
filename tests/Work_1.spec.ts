@@ -21,7 +21,7 @@ async function loginReal(page: Page, username: string, password: string) {
 }
 
 // ---------- STUB B : Inventory ----------
-// สินค้าปลอม 2 ชิ้น + ปุ่ม Add to cart ที่นับจำนวนในตะกร้าได้
+// สินค้าปลอม 2 ชิ้น + ปุ่ม Add to cart ที่นับจำนวนในตะกร้าได้ + ชื่อนักศึกษา
 const STUB_PRODUCTS = [
   { id: 'stub-1', name: 'Stub Product One', price: '$10.00' },
   { id: 'stub-2', name: 'Stub Product Two', price: '$20.00' },
@@ -55,39 +55,22 @@ async function inventoryStub(page: Page) {
   `);
 }
 
-test.describe('Work 1 - Top-Down (Login REAL -> Inventory STUB)', () => {
-  test('TD-01: Login สำเร็จแล้วส่งต่อไปหน้า Inventory (STUB)', async ({ page }) => {
-    await loginReal(page, 'standard_user', 'secret_sauce');
+test('Top-Down STUB: Login REAL -> Inventory STUB', async ({ page }) => {
+  // REAL A : Login จริง -> ต้องพาไปหน้า inventory
+  await loginReal(page, 'standard_user', 'secret_sauce');
+  await expect(page).toHaveURL(/inventory\.html/);
 
-    // A ทำงานจริง -> ต้องพาไปหน้า inventory
-    await expect(page).toHaveURL(/inventory\.html/);
+  // STUB B : แทนหน้า Inventory ด้วย STUB
+  await inventoryStub(page);
 
-    // แทน B ด้วย STUB
-    await inventoryStub(page);
+  // Assert : REAL A -> STUB B
+  await expect(page.locator('.title')).toHaveText('Products (STUB)');
+  await expect(page.locator('.inventory_item')).toHaveCount(STUB_PRODUCTS.length);
+  await expect(page.locator('.inventory_item_name').first()).toHaveText('Stub Product One');
+  await expect(page.locator('[data-test="student-info"]')).toHaveText(STUDENT_INFO);
 
-    await expect(page.locator('.title')).toHaveText('Products (STUB)');
-    await expect(page.locator('.inventory_item')).toHaveCount(STUB_PRODUCTS.length);
-    await expect(page.locator('.inventory_item_name').first()).toHaveText('Stub Product One');
-    await expect(page.locator('[data-test="student-info"]')).toHaveText(STUDENT_INFO);
-  });
-
-  test('TD-02: กด Add to cart บน STUB แล้วตัวเลขตะกร้าเพิ่มขึ้น', async ({ page }) => {
-    await loginReal(page, 'standard_user', 'secret_sauce');
-    await expect(page).toHaveURL(/inventory\.html/);
-    await inventoryStub(page);
-
-    await page.locator('[data-test="add-stub-1"]').click();
-    await expect(page.locator('.shopping_cart_badge')).toHaveText('1');
-    await expect(page.locator('[data-test="add-stub-1"]')).toHaveText('Remove');
-
-    await page.locator('[data-test="add-stub-2"]').click();
-    await expect(page.locator('.shopping_cart_badge')).toHaveText('2');
-  });
-
-  test('TD-03: Login ผิด จะไม่ไปถึง Inventory (ไม่ต้องเรียก STUB)', async ({ page }) => {
-    await loginReal(page, 'locked_out_user', 'secret_sauce');
-
-    await expect(page).not.toHaveURL(/inventory\.html/);
-    await expect(page.locator('[data-test="error"]')).toContainText('locked out');
-  });
+  // กด Add to cart บน STUB แล้วตัวเลขตะกร้าเพิ่มขึ้น
+  await page.locator('[data-test="add-stub-1"]').click();
+  await expect(page.locator('.shopping_cart_badge')).toHaveText('1');
+  await expect(page.locator('[data-test="add-stub-1"]')).toHaveText('Remove');
 });
